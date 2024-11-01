@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="styles.css"> <!-- ربط ملف CSS -->
 </head>
 <body>
-    <div class="calculator">
+    <div class="calculator" style="display: none;">
         <h2>حساب العمر وكتلة الجسم (BMI)</h2>
 
         <label for="secret-code">أدخل الكود السري:</label>
         <input type="text" id="secret-code" placeholder="الكود السري">
-        <button onclick="loginWithCode(document.getElementById('secret-code').value)">تسجيل الدخول</button>
+        <button onclick="login()">تسجيل الدخول</button>
 
         <label for="input">أدخل تاريخ الميلاد بصيغة B3:</label>
         <input type="text" id="input" placeholder="مثال: 320101">
