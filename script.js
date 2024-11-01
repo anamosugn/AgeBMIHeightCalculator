@@ -1,24 +1,24 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co'; // استبدل بعنوان مشروعك
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg'; // استبدل بمفتاح API الخاص بك
+const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
 
 const supabase = createClient(supabaseUrl, supabaseKey);
-let isLoggedIn = false; // حالة تسجيل الدخول
+let isLoggedIn = false;
 
 function getDeviceId() {
     let deviceId = localStorage.getItem('deviceId');
     if (!deviceId) {
-        deviceId = 'device-' + Math.random().toString(36).substr(2, 9); // توليد معرف فريد
-        localStorage.setItem('deviceId', deviceId); // تخزين المعرف في localStorage
+        deviceId = 'device-' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('deviceId', deviceId);
     }
     return deviceId;
 }
 
-// تعريف الدالة لتكون في window حتى يمكن الوصول لها من HTML
+// تأكد من إضافة كل دالة إلى window
 window.login = async function() {
-    const inputCode = document.getElementById("secret-code").value; // استخدم حقل الإدخال الصحيح
-    const deviceId = getDeviceId(); // الحصول على معرف الجهاز
+    const inputCode = document.getElementById("secret-code").value;
+    const deviceId = getDeviceId();
 
     const { data, error } = await supabase
         .from('access_codes')
@@ -32,8 +32,8 @@ window.login = async function() {
         document.getElementById("login-error").innerText = "الكود غير صحيح أو الجهاز غير مسموح له.";
     } else {
         isLoggedIn = true;
-        document.getElementById("login-form").style.display = "none"; 
-        document.querySelector(".calculator").style.display = "block"; 
+        document.getElementById("login-form").style.display = "none";
+        document.querySelector(".calculator").style.display = "block";
         console.log("تسجيل الدخول ناجح!");
     }
 }
