@@ -9,6 +9,17 @@ body {
     margin: 0;
 }
 
+/* تصميم نموذج تسجيل الدخول */
+#login-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 20px;
+}
+
 /* تصميم الآلة الحاسبة */
 .calculator {
     width: 100%;
@@ -39,7 +50,9 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="email"],
+input[type="password"] {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -93,7 +106,8 @@ button:hover {
 
 /* تصميم الهواتف */
 @media (max-width: 480px) {
-    .calculator {
+    .calculator,
+    #login-form {
         padding: 15px;
     }
 
@@ -107,7 +121,9 @@ button:hover {
     }
 
     input[type="text"],
-    input[type="number"] {
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
         font-size: 1em;
         padding: 10px;
     }
