@@ -36,6 +36,12 @@ async function login() {
     }
 }
 
+function togglePassword() {
+    const passwordField = document.getElementById("secret-code");
+    const type = passwordField.type === "password" ? "text" : "password";
+    passwordField.type = type;
+}
+
 function calculateAge() {
     // التأكد من تسجيل الدخول
     if (!isLoggedIn) {
