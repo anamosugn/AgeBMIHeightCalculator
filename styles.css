@@ -12,29 +12,29 @@ body {
 /* تصميم الآلة الحاسبة */
 .calculator {
     width: 100%;
-    max-width: 320px;
-    padding: 20px;
+    max-width: 400px; /* زيادة العرض الأقصى */
+    padding: 25px; /* زيادة padding */
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2); /* زيادة الظل */
+    border-radius: 12px; /* زيادة انحناء الزوايا */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3); /* زيادة الظل */
     text-align: center;
 }
 
 /* تصميم العناوين */
 h2 {
     color: #333;
-    font-size: 1.8em;
-    margin-bottom: 20px;
+    font-size: 2em; /* زيادة حجم الخط */
+    margin-bottom: 25px; /* زيادة الهامش السفلي */
     font-weight: bold;
 }
 
 /* تنسيق المدخلات */
 label {
-    font-size: 1em;
+    font-size: 1.1em; /* زيادة حجم الخط */
     color: #666;
     display: block;
     text-align: right;
-    margin-bottom: 5px;
+    margin-bottom: 8px; /* زيادة الهامش السفلي */
     font-weight: bold;
 }
 
@@ -42,20 +42,21 @@ input[type="text"],
 input[type="number"],
 input[type="password"] { /* إضافة تنسيق لحقل كلمة السر */
     width: 100%;
-    padding: 12px;
+    padding: 14px; /* زيادة padding */
     margin-bottom: 15px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 6px; /* زيادة انحناء الحواف */
     font-size: 1.1em;
     font-weight: bold;
     box-sizing: border-box;
-    transition: border-color 0.3s; /* إضافة تأثير عند التركيز */
+    transition: border-color 0.3s, box-shadow 0.3s; /* إضافة تأثير ظل */
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="password"]:focus { /* إضافة تأثير التركيز لحقل كلمة السر */
     border-color: #4CAF50; /* تغيير لون الحدود عند التركيز */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* إضافة تأثير ظل عند التركيز */
 }
 
 /* تنسيق أزرار الاختيار */
@@ -72,12 +73,12 @@ input[type="radio"] {
 /* تنسيق الأزرار */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px; /* زيادة padding */
     background-color: #388E3C; /* لون مختلف للزر */
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
+    border-radius: 6px; /* زيادة انحناء الزوايا */
+    font-size: 1.2em; /* زيادة حجم الخط */
     font-weight: bold;
     cursor: pointer;
     margin-bottom: 10px;
@@ -99,24 +100,24 @@ button:active {
     color: #333;
     margin-top: 10px;
     background-color: #e6e6e6;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px; /* زيادة padding */
+    border-radius: 6px; /* زيادة انحناء الزوايا */
     font-weight: bold;
 }
 
 /* تصميم الهواتف */
 @media (max-width: 480px) {
     .calculator {
-        padding: 15px;
+        padding: 20px; /* تقليل padding */
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 1.7em; /* تقليل حجم الخط */
     }
 
     button {
-        font-size: 1em;
-        padding: 10px;
+        font-size: 1.1em; /* تقليل حجم الخط */
+        padding: 12px; /* تقليل padding */
     }
 
     input[type="text"],
