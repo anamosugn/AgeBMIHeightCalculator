@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/@supabase/supabase-js@latest"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب العمر وكتلة الجسم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- ربط ملف CSS -->
+</head>
+<body>
+    <div class="calculator">
+        <h2>حساب العمر وكتلة الجسم (BMI)</h2>
+
+        <label for="input">أدخل تاريخ الميلاد بصيغة B3:</label>
+        <input type="text" id="input" placeholder="مثال: 320101">
+        <button onclick="calculateAge()">احسب العمر</button>
+
+        <label for="weight">أدخل الوزن (كجم):</label>
+        <input type="number" id="weight" placeholder="الوزن بالكيلوغرام">
+        
+        <label for="height">أدخل الطول (سم):</label>
+        <input type="number" id="height" placeholder="الطول بالسنتيمتر">
+
+        <div class="gender-selection">
+            <label>
+                <input type="radio" id="male" name="gender" value="male" checked>
+                ولد
+            </label>
+            <label>
+                <input type="radio" id="female" name="gender" value="female">
+                بنت
+            </label>
+        </div>
+
+        <div class="age-options">
+            <label>
+                <input type="radio" name="age-option" value="age" checked>
+                حساب BMI حسب العمر (5-19 سنة)
+            </label>
+            <label>
+                <input type="radio" name="age-option" value="no-age">
+                حساب BMI بدون الاعتماد على العمر
+            </label>
+        </div>
+        
+        <button onclick="calculateBMI()">احسب كتلة الجسم (BMI)</button>
+        
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js" defer></script> <!-- ربط ملف JavaScript -->
+</body>
+</html>

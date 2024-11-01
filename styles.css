@@ -1,0 +1,114 @@
+/* تصميم الصفحة بالكامل */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/* تصميم الآلة الحاسبة */
+.calculator {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* تصميم العناوين */
+h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* تنسيق المدخلات */
+label {
+    font-size: 1em;
+    color: #666;
+    display: block;
+    text-align: right;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/* تنسيق أزرار الاختيار */
+.gender-selection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* تنسيق الأزرار */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* تنسيق نص النتيجة */
+#result {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 10px;
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* تصميم الهواتف */
+@media (max-width: 480px) {
+    .calculator {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
