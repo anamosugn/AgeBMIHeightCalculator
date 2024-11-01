@@ -1,6 +1,6 @@
 // إعداد الاتصال مع Supabase
 const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
-const supabaseKey = 'YOUR_SUPABASE_KEY'; // استبدل YOUR_SUPABASE_KEY بمفتاح Supabase الخاص بك
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // دالة تسجيل الدخول
