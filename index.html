@@ -9,13 +9,17 @@
     <link rel="stylesheet" href="styles.css"> <!-- ربط ملف CSS -->
 </head>
 <body>
-    <div class="calculator" style="display: none;">
-        <h2>حساب العمر وكتلة الجسم (BMI)</h2>
-
+    <div id="login-form">
+        <h2>تسجيل الدخول</h2>
         <label for="secret-code">أدخل الكود السري:</label>
         <input type="password" id="secret-code" placeholder="الكود السري">
         <button type="button" onclick="togglePassword()">إظهار/إخفاء</button>
         <button onclick="login()">تسجيل الدخول</button>
+        <p id="login-error" style="color:red;"></p> <!-- لعرض أخطاء تسجيل الدخول -->
+    </div>
+
+    <div class="calculator" style="display: none;">
+        <h2>حساب العمر وكتلة الجسم (BMI)</h2>
 
         <label for="input">أدخل تاريخ الميلاد بصيغة B3:</label>
         <input type="text" id="input" placeholder="مثال: 320101">
