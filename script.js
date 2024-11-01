@@ -2,7 +2,6 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
-
 const supabase = createClient(supabaseUrl, supabaseKey);
 let isLoggedIn = false;
 
@@ -20,6 +19,11 @@ window.login = async function() {
     const inputCode = document.getElementById("secret-code").value;
     const deviceId = getDeviceId();
 
+    if (!inputCode) {
+        document.getElementById("login-error").innerText = "يرجى إدخال الكود السري.";
+        return;
+    }
+
     const { data, error } = await supabase
         .from('access_codes')
         .select('*')
@@ -35,6 +39,7 @@ window.login = async function() {
         document.getElementById("login-form").style.display = "none";
         document.querySelector(".calculator").style.display = "block";
         console.log("تسجيل الدخول ناجح!");
+        document.getElementById("result").innerText = "تسجيل الدخول ناجح!";
     }
 }
 
@@ -126,8 +131,8 @@ window.calculateBMI = function() {
         document.getElementById("result").innerText += `العمر: ${age} سنة\n`;
     }
 
-    if (!weight || !height) {
-        document.getElementById("result").innerText = "الرجاء إدخال الوزن والطول.";
+    if (!weight || !height || weight <= 0 || height <= 0) {
+        document.getElementById("result").innerText = "الرجاء إدخال وزن وطول صالحين.";
         return;
     }
 
@@ -140,24 +145,21 @@ window.calculateBMI = function() {
         if (gender === "male") {
             if (bmi < 13.5) category = "نحافة شديدة";
             else if (bmi >= 13.5 && bmi < 15) category = "نحافة معتدلة";
-            else if (bmi >= 15 && bmi < 17) category = "نحافة خفيفة";
-            else if (bmi >= 17 && bmi < 20) category = "وزن طبيعي";
-            else if (bmi >= 20 && bmi < 23) category = "زيادة الوزن";
+            else if (bmi >= 15 && bmi < 18) category = "نحافة";
+            else if (bmi >= 18 && bmi < 25) category = "وزن صحي";
+            else if (bmi >= 25 && bmi < 30) category = "زيادة الوزن";
             else category = "سمنة";
         } else {
             if (bmi < 12.5) category = "نحافة شديدة";
             else if (bmi >= 12.5 && bmi < 14.5) category = "نحافة معتدلة";
-            else if (bmi >= 14.5 && bmi < 16.5) category = "نحافة خفيفة";
-            else if (bmi >= 16.5 && bmi < 19) category = "وزن طبيعي";
-            else if (bmi >= 19 && bmi < 22) category = "زيادة الوزن";
+            else if (bmi >= 14.5 && bmi < 17.5) category = "نحافة";
+            else if (bmi >= 17.5 && bmi < 24) category = "وزن صحي";
+            else if (bmi >= 24 && bmi < 29) category = "زيادة الوزن";
             else category = "سمنة";
         }
     } else {
-        if (bmi < 18.5) category = "نحافة";
-        else if (bmi >= 18.5 && bmi < 24.9) category = "وزن طبيعي";
-        else if (bmi >= 25 && bmi < 29.9) category = "زيادة الوزن";
-        else category = "سمنة";
+        category = bmi < 18.5 ? "نحافة" : bmi < 25 ? "وزن صحي" : bmi < 30 ? "زيادة الوزن" : "سمنة";
     }
 
-    document.getElementById("result").innerText += `BMI: ${bmi} (${category})`;
+    document.getElementById("result").innerText += `مؤشر كتلة الجسم (BMI): ${bmi} (${category})`;
 }
