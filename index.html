@@ -14,7 +14,7 @@
         <label for="secret-code">أدخل الكود السري:</label>
         <input type="password" id="secret-code" placeholder="الكود السري">
         <button type="button" onclick="togglePassword()">إظهار/إخفاء</button>
-        <button onclick="login()">تسجيل الدخول</button>
+        <button type="button" onclick="login()">تسجيل الدخول</button>
         <p id="login-error" style="color:red;"></p> <!-- لعرض أخطاء تسجيل الدخول -->
     </div>
 
@@ -59,5 +59,51 @@
     </div>
 
     <script src="script.js" defer></script> <!-- ربط ملف JavaScript -->
+    <script>
+        // إعداد Supabase
+        const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co'; // استبدل بعنوان مشروعك
+        const supabaseKey = 'your_supabase_key'; // استبدل بمفتاح API الخاص بك
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        let isLoggedIn = false; // حالة تسجيل الدخول
+
+        function getDeviceId() {
+            let deviceId = localStorage.getItem('deviceId');
+            if (!deviceId) {
+                deviceId = 'device-' + Math.random().toString(36).substr(2, 9); // توليد معرف فريد
+                localStorage.setItem('deviceId', deviceId); // تخزين المعرف في localStorage
+            }
+            return deviceId;
+        }
+
+        async function login() {
+            const inputCode = document.getElementById("secret-code").value; // استخدم حقل الإدخال الصحيح
+            const deviceId = getDeviceId(); // الحصول على معرف الجهاز
+
+            // استعلام عن الأكواد السريّة في Supabase
+            const { data, error } = await supabase
+                .from('access_codes')
+                .select('*')
+                .eq('code', inputCode)
+                .eq('device_id', deviceId)
+                .eq('is_active', true)
+                .single();
+
+            if (error || !data) {
+                document.getElementById("login-error").innerText = "الكود غير صحيح أو الجهاز غير مسموح له.";
+            } else {
+                isLoggedIn = true; // تسجيل الدخول بنجاح
+                document.getElementById("login-form").style.display = "none"; // إخفاء نموذج تسجيل الدخول
+                document.querySelector(".calculator").style.display = "block"; // عرض آلة الحاسبة
+                console.log("تسجيل الدخول ناجح!");
+            }
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById("secret-code");
+            const type = passwordField.type === "password" ? "text" : "password";
+            passwordField.type = type;
+        }
+    </script>
 </body>
 </html>
