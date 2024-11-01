@@ -24,9 +24,8 @@ async function login() {
     }
 }
 
-// باقي الدوال
+// دالة حساب العمر
 function calculateAge() {
-    // تصفير النتائج
     document.getElementById("result").innerText = "";
 
     const input = document.getElementById("input").value;
@@ -59,8 +58,8 @@ function calculateAge() {
     document.getElementById("result").innerText = `العمر: ${years} سنة و ${months} شهر`;
 }
 
+// دالة حساب BMI
 function calculateBMI() {
-    // تصفير النتائج
     document.getElementById("result").innerText = "";
 
     const weight = parseFloat(document.getElementById("weight").value);
@@ -68,7 +67,6 @@ function calculateBMI() {
     const gender = document.querySelector('input[name="gender"]:checked').value;
     const ageOption = document.querySelector('input[name="age-option"]:checked').value;
 
-    // لا حاجة للتحقق من تاريخ الميلاد إذا كان الخيار هو "حساب BMI بدون الاعتماد على العمر"
     if (ageOption === "age") {
         const input = document.getElementById("input").value;
 
