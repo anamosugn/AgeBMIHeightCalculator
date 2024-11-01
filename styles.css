@@ -1,6 +1,7 @@
 /* تصميم الصفحة بالكامل */
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -11,12 +12,13 @@ body {
 
 /* تصميم نموذج تسجيل الدخول */
 #login-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 320px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -29,6 +31,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    display: none; /* إخفاء الآلة الحاسبة حتى تسجيل الدخول */
 }
 
 /* تصميم العناوين */
@@ -49,10 +52,10 @@ label {
     font-weight: bold;
 }
 
-input[type="text"],
-input[type="number"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"],
+input[type="number"] {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -61,17 +64,6 @@ input[type="password"] {
     font-size: 1.1em;
     font-weight: bold;
     box-sizing: border-box;
-}
-
-/* تنسيق أزرار الاختيار */
-.gender-selection {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-input[type="radio"] {
-    margin-right: 5px;
 }
 
 /* تنسيق الأزرار */
@@ -102,29 +94,4 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
-}
-
-/* تصميم الهواتف */
-@media (max-width: 480px) {
-    .calculator,
-    #login-form {
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    button {
-        font-size: 1em;
-        padding: 10px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="email"],
-    input[type="password"] {
-        font-size: 1em;
-        padding: 10px;
-    }
 }
