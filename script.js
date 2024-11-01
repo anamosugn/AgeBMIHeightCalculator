@@ -1,32 +1,25 @@
-// تعريف URL و API Key لـ Supabase
-const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
+// تحديد الكود السري
+const secretCode = "123456"; // استبدل هذا بالكود الذي تريده
+let isLoggedIn = false; // حالة تسجيل الدخول
 
-// إنشاء عميل Supabase
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-// دالة تسجيل الدخول
-async function login() {
-    const email = 'user@example.com'; // استبدل هذا بعنوان البريد الإلكتروني للمستخدم
-    const password = 'your_password'; // استبدل هذا بكلمة مرور المستخدم
-
-    const { user, error } = await supabase.auth.signIn({
-        email: email,
-        password: password
-    });
-
-    const messageDiv = document.getElementById('message');
-
-    if (error) {
-        messageDiv.innerText = "فشل تسجيل الدخول: " + error.message;
+function login() {
+    const inputCode = document.getElementById("code").value;
+    if (inputCode === secretCode) {
+        isLoggedIn = true; // تسجيل الدخول بنجاح
+        document.getElementById("login-form").style.display = "none"; // إخفاء نموذج تسجيل الدخول
+        document.querySelector(".calculator").style.display = "block"; // عرض آلة الحاسبة
     } else {
-        messageDiv.innerText = "تم تسجيل الدخول بنجاح! مرحبًا بك، " + user.email;
-        // يمكن استدعاء دالة calculateAge هنا إذا أردت
+        alert("الكود غير صحيح. حاول مرة أخرى.");
     }
 }
 
-// دالة لحساب العمر
 function calculateAge() {
+    // التأكد من تسجيل الدخول
+    if (!isLoggedIn) {
+        document.getElementById("result").innerText = "يرجى تسجيل الدخول أولاً.";
+        return;
+    }
+
     // تصفير النتائج
     document.getElementById("result").innerText = "";
 
@@ -60,8 +53,13 @@ function calculateAge() {
     document.getElementById("result").innerText = `العمر: ${years} سنة و ${months} شهر`;
 }
 
-// دالة لحساب كتلة الجسم (BMI)
 function calculateBMI() {
+    // التأكد من تسجيل الدخول
+    if (!isLoggedIn) {
+        document.getElementById("result").innerText = "يرجى تسجيل الدخول أولاً.";
+        return;
+    }
+
     // تصفير النتائج
     document.getElementById("result").innerText = "";
 
@@ -137,6 +135,3 @@ function calculateBMI() {
 
     document.getElementById("result").innerText += `BMI: ${bmi} (${category})`;
 }
-
-// استدعاء دالة تسجيل الدخول عند تحميل الصفحة
-login();
