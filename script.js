@@ -3,29 +3,31 @@ const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
 
 // إنشاء عميل Supabase
-const { createClient } = supabase; // تأكد من استيراد الدالة بشكل صحيح
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // دالة تسجيل الدخول
 async function login() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = 'user@example.com'; // استبدل هذا بعنوان البريد الإلكتروني للمستخدم
+    const password = 'your_password'; // استبدل هذا بكلمة مرور المستخدم
 
     const { user, error } = await supabase.auth.signIn({
         email: email,
         password: password
     });
 
+    const messageDiv = document.getElementById('message');
+
     if (error) {
-        alert("فشل تسجيل الدخول: " + error.message);
+        messageDiv.innerText = "فشل تسجيل الدخول: " + error.message;
     } else {
-        document.getElementById("login-form").style.display = "none";
-        document.querySelector(".calculator").style.display = "block";
+        messageDiv.innerText = "تم تسجيل الدخول بنجاح! مرحبًا بك، " + user.email;
+        // يمكن استدعاء دالة calculateAge هنا إذا أردت
     }
 }
 
-// دالة حساب العمر
+// دالة لحساب العمر
 function calculateAge() {
+    // تصفير النتائج
     document.getElementById("result").innerText = "";
 
     const input = document.getElementById("input").value;
@@ -58,8 +60,9 @@ function calculateAge() {
     document.getElementById("result").innerText = `العمر: ${years} سنة و ${months} شهر`;
 }
 
-// دالة حساب BMI
+// دالة لحساب كتلة الجسم (BMI)
 function calculateBMI() {
+    // تصفير النتائج
     document.getElementById("result").innerText = "";
 
     const weight = parseFloat(document.getElementById("weight").value);
@@ -67,6 +70,7 @@ function calculateBMI() {
     const gender = document.querySelector('input[name="gender"]:checked').value;
     const ageOption = document.querySelector('input[name="age-option"]:checked').value;
 
+    // لا حاجة للتحقق من تاريخ الميلاد إذا كان الخيار هو "حساب BMI بدون الاعتماد على العمر"
     if (ageOption === "age") {
         const input = document.getElementById("input").value;
 
@@ -133,3 +137,6 @@ function calculateBMI() {
 
     document.getElementById("result").innerText += `BMI: ${bmi} (${category})`;
 }
+
+// استدعاء دالة تسجيل الدخول عند تحميل الصفحة
+login();
