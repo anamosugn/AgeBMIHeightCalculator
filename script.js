@@ -1,8 +1,9 @@
-// تعريف supabase
-const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
 
-// استيراد المكتبة بشكل صحيح
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 const { createClient } = supabase; // تأكد من إضافة هذه السطر
 
 const supabase = createClient(supabaseUrl, supabaseKey);
