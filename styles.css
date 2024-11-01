@@ -1,25 +1,12 @@
 /* تصميم الصفحة بالكامل */
 body {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
     margin: 0;
-}
-
-/* تصميم نموذج تسجيل الدخول */
-#login-form {
-    width: 100%;
-    max-width: 320px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    margin-bottom: 20px;
 }
 
 /* تصميم الآلة الحاسبة */
@@ -29,9 +16,8 @@ body {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* زيادة الظل */
     text-align: center;
-    display: none; /* إخفاء الآلة الحاسبة حتى تسجيل الدخول */
 }
 
 /* تصميم العناوين */
@@ -52,8 +38,6 @@ label {
     font-weight: bold;
 }
 
-input[type="email"],
-input[type="password"],
 input[type="text"],
 input[type="number"] {
     width: 100%;
@@ -64,6 +48,23 @@ input[type="number"] {
     font-size: 1.1em;
     font-weight: bold;
     box-sizing: border-box;
+    transition: border-color 0.3s; /* إضافة تأثير عند التركيز */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #4CAF50; /* تغيير لون الحدود عند التركيز */
+}
+
+/* تنسيق أزرار الاختيار */
+.gender-selection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
 }
 
 /* تنسيق الأزرار */
@@ -78,11 +79,16 @@ button {
     font-weight: bold;
     cursor: pointer;
     margin-bottom: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* إضافة تأثير التحويل */
 }
 
 button:hover {
     background-color: #45a049;
+    transform: translateY(-2px); /* رفع الزر قليلاً عند التمرير */
+}
+
+button:active {
+    transform: translateY(0); /* العودة لوضع الزر الأصلي عند الضغط */
 }
 
 /* تنسيق نص النتيجة */
@@ -94,4 +100,26 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+/* تصميم الهواتف */
+@media (max-width: 480px) {
+    .calculator {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        font-size: 1em;
+        padding: 10px;
+    }
 }
