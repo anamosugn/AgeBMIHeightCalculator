@@ -1,15 +1,38 @@
-// تحديد الكود السري
-const secretCode = "123456"; // استبدل هذا بالكود الذي تريده
+const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co'; // استبدل بعنوان مشروعك
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg'; // استبدل بمفتاح API الخاص بك
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
 let isLoggedIn = false; // حالة تسجيل الدخول
 
-function login() {
-    const inputCode = document.getElementById("code").value;
-    if (inputCode === secretCode) {
+function getDeviceId() {
+    let deviceId = localStorage.getItem('deviceId');
+    if (!deviceId) {
+        deviceId = 'device-' + Math.random().toString(36).substr(2, 9); // توليد معرف فريد
+        localStorage.setItem('deviceId', deviceId); // تخزين المعرف في localStorage
+    }
+    return deviceId;
+}
+
+async function login() {
+    const inputCode = document.getElementById("secret-code").value; // استخدم حقل الإدخال الصحيح
+    const deviceId = getDeviceId(); // الحصول على معرف الجهاز
+
+    // استعلام عن الأكواد السريّة في Supabase
+    const { data, error } = await supabase
+        .from('access_codes')
+        .select('*')
+        .eq('code', inputCode)
+        .eq('device_id', deviceId)
+        .eq('is_active', true)
+        .single();
+
+    if (error || !data) {
+        alert("الكود غير صحيح أو الجهاز غير مسموح له.");
+    } else {
         isLoggedIn = true; // تسجيل الدخول بنجاح
         document.getElementById("login-form").style.display = "none"; // إخفاء نموذج تسجيل الدخول
         document.querySelector(".calculator").style.display = "block"; // عرض آلة الحاسبة
-    } else {
-        alert("الكود غير صحيح. حاول مرة أخرى.");
+        console.log("تسجيل الدخول ناجح!");
     }
 }
 
