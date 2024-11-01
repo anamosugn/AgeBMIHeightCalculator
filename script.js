@@ -1,29 +1,30 @@
-// تعريف Supabase
-const { createClient } = supabase;
+// تعريف URL و API Key لـ Supabase
 const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
+
+// إنشاء عميل Supabase
+const { createClient } = supabase; // تأكد من استيراد الدالة بشكل صحيح
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // دالة تسجيل الدخول
 async function login() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     const { user, error } = await supabase.auth.signIn({
         email: email,
-        password: password,
+        password: password
     });
 
     if (error) {
-        console.error('Error logging in:', error.message);
+        alert("فشل تسجيل الدخول: " + error.message);
     } else {
-        console.log('Logged in:', user);
-        document.getElementById('login-form').style.display = 'none';
-        document.querySelector('.calculator').style.display = 'block';
+        document.getElementById("login-form").style.display = "none";
+        document.querySelector(".calculator").style.display = "block";
     }
 }
 
-// دالة حساب العمر
+// باقي الدوال
 function calculateAge() {
     // تصفير النتائج
     document.getElementById("result").innerText = "";
@@ -58,7 +59,6 @@ function calculateAge() {
     document.getElementById("result").innerText = `العمر: ${years} سنة و ${months} شهر`;
 }
 
-// دالة حساب BMI
 function calculateBMI() {
     // تصفير النتائج
     document.getElementById("result").innerText = "";
