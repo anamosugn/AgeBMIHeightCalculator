@@ -1,24 +1,24 @@
-const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co'; // URL الخاص بـ Supabase
+// تعريف supabase
+const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
-
-const supabase = supabase.createClient(supabaseUrl, supabaseKey); // إنشاء عميل Supabase
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // دالة تسجيل الدخول
 async function login() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
     const { user, error } = await supabase.auth.signIn({
         email: email,
-        password: password
+        password: password,
     });
 
     if (error) {
-        alert("فشل تسجيل الدخول: " + error.message);
+        console.error('Error logging in:', error.message);
     } else {
-        alert("تم تسجيل الدخول بنجاح!");
-        document.getElementById("login-form").style.display = "none"; // إخفاء نموذج تسجيل الدخول
-        document.querySelector(".calculator").style.display = "block"; // عرض الآلة الحاسبة
+        console.log('Logged in:', user);
+        document.getElementById('login-form').style.display = 'none';
+        document.querySelector('.calculator').style.display = 'block';
     }
 }
 
