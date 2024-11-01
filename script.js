@@ -1,3 +1,28 @@
+// إعداد الاتصال مع Supabase
+const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
+const supabaseKey = 'YOUR_SUPABASE_KEY'; // استبدل YOUR_SUPABASE_KEY بمفتاح Supabase الخاص بك
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// دالة تسجيل الدخول
+async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { user, error } = await supabase.auth.signIn({
+        email: email,
+        password: password,
+    });
+
+    if (error) {
+        alert('فشل تسجيل الدخول: ' + error.message);
+    } else {
+        alert('تم تسجيل الدخول بنجاح!');
+        document.getElementById("login-form").style.display = "none"; // إخفاء نموذج تسجيل الدخول
+        document.querySelector(".calculator").style.display = "block"; // إظهار الآلة الحاسبة
+    }
+}
+
+// دالة حساب العمر
 function calculateAge() {
     // تصفير النتائج
     document.getElementById("result").innerText = "";
@@ -32,6 +57,7 @@ function calculateAge() {
     document.getElementById("result").innerText = `العمر: ${years} سنة و ${months} شهر`;
 }
 
+// دالة حساب BMI
 function calculateBMI() {
     // تصفير النتائج
     document.getElementById("result").innerText = "";
@@ -41,7 +67,6 @@ function calculateBMI() {
     const gender = document.querySelector('input[name="gender"]:checked').value;
     const ageOption = document.querySelector('input[name="age-option"]:checked').value;
 
-    // لا حاجة للتحقق من تاريخ الميلاد إذا كان الخيار هو "حساب BMI بدون الاعتماد على العمر"
     if (ageOption === "age") {
         const input = document.getElementById("input").value;
 
@@ -83,28 +108,26 @@ function calculateBMI() {
 
     let category = "";
 
-    if (ageOption === "age") { // حساب BMI حسب العمر
+    if (ageOption === "age") {
         if (gender === "male") {
             if (bmi < 13.5) category = "نحافة شديدة";
             else if (bmi >= 13.5 && bmi < 15) category = "نحافة معتدلة";
-            else if (bmi >= 15 && bmi < 17) category = "نحافة خفيفة";
-            else if (bmi >= 17 && bmi < 20) category = "وزن طبيعي";
-            else if (bmi >= 20 && bmi < 23) category = "زيادة الوزن";
-            else category = "سمنة";
-        } else { // أنثى
-            if (bmi < 12.5) category = "نحافة شديدة";
-            else if (bmi >= 12.5 && bmi < 14.5) category = "نحافة معتدلة";
-            else if (bmi >= 14.5 && bmi < 16.5) category = "نحافة خفيفة";
-            else if (bmi >= 16.5 && bmi < 19) category = "وزن طبيعي";
-            else if (bmi >= 19 && bmi < 22) category = "زيادة الوزن";
-            else category = "سمنة";
+            else if (bmi >= 15 && bmi < 18.5) category = "نحافة خفيفة";
+            else if (bmi >= 18.5 && bmi < 24.5) category = "وزن طبيعي";
+            else category = "وزن زائد";
+        } else {
+            if (bmi < 14) category = "نحافة شديدة";
+            else if (bmi >= 14 && bmi < 15.5) category = "نحافة معتدلة";
+            else if (bmi >= 15.5 && bmi < 19) category = "نحافة خفيفة";
+            else if (bmi >= 19 && bmi < 25) category = "وزن طبيعي";
+            else category = "وزن زائد";
         }
-    } else { // حساب BMI بدون الاعتماد على العمر
+    } else {
         if (bmi < 18.5) category = "نحافة";
         else if (bmi >= 18.5 && bmi < 24.9) category = "وزن طبيعي";
-        else if (bmi >= 25 && bmi < 29.9) category = "زيادة الوزن";
+        else if (bmi >= 25 && bmi < 29.9) category = "وزن زائد";
         else category = "سمنة";
     }
 
-    document.getElementById("result").innerText += `BMI: ${bmi} (${category})`;
+    document.getElementById("result").innerText += `مؤشر كتلة الجسم (BMI): ${bmi} - الفئة: ${category}`;
 }
