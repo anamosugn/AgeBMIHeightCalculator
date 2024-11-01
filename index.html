@@ -26,10 +26,10 @@
         <button onclick="calculateAge()">احسب العمر</button>
 
         <label for="weight">أدخل الوزن (كجم):</label>
-        <input type="number" id="weight" placeholder="الوزن بالكيلوغرام">
+        <input type="number" id="weight" placeholder="الوزن بالكيلوغرام" min="1" required>
         
         <label for="height">أدخل الطول (سم):</label>
-        <input type="number" id="height" placeholder="الطول بالسنتيمتر">
+        <input type="number" id="height" placeholder="الطول بالسنتيمتر" min="1" required>
 
         <div class="gender-selection">
             <label>
@@ -57,8 +57,6 @@
         
         <p id="result"></p>
     </div>
-
-
 </body>
-        <script src="script.js" defer></script> <!-- ربط ملف JavaScript -->
+<script src="script.js" defer></script> <!-- ربط ملف JavaScript -->
 </html>
