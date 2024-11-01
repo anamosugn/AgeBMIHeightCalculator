@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg';
+const supabaseUrl = 'https://rdbruokyngxxrcgewdtm.supabase.co'; // استبدل بعنوان مشروعك
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkYnJ1b2t5bmd4eHJjZ2V3ZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0ODYxNjgsImV4cCI6MjA0NjA2MjE2OH0.yH7DNI6shkNkUy-ntZxxO7SgkI944VjjuXSX0yvnwrg'; // استبدل بمفتاح API الخاص بك
 
+// تأكد من تعريف supabase قبل استخدامه
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 let isLoggedIn = false; // حالة تسجيل الدخول
